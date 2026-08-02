@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sir Keks — of a long line of seafarers</title>
+<meta name="description" content="Sir Keks, a ragdoll cat descended from mariners who charted the deep. Daily dispatches as @Ragdoll_Keks on Instagram, TikTok, and YouTube.">
+<meta name="tiktok-developers-site-verification" content="9mMx0n5BvZdNZpd1dIDapDyl2wt6VR7X">
+<meta property="og:title" content="Sir Keks — of a long line of seafarers">
+<meta property="og:description" content="A ragdoll cat descended from mariners who charted the deep. Now he charts the sofa.">
+<meta property="og:image" content="https://keks.bathycast.com/keks-hero.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss:#081726; --deep:#050F1B; --surface:#0E2942; --surface-2:#123351;
+    --cream:#F4E7CC; --sand:#CBB489; --brass:#D3A65C; --brass-dim:#9C7B41;
+    --foam:#EAF2F8; --muted:#93AABF; --hairline:#1C3852;
+    --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; color:var(--foam); background:var(--deep);
+    font-family:var(--sans); line-height:1.7; -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(1200px 700px at 78% -8%, rgba(45,95,140,.30), transparent 60%),
+      radial-gradient(900px 900px at 8% 110%, rgba(20,60,95,.28), transparent 60%),
+      linear-gradient(180deg, var(--abyss) 0%, var(--deep) 100%);
+    background-attachment:fixed;
+  }
+  a{ color:inherit; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 clamp(1.25rem,4vw,2.5rem); }
+
+  /* depth-sounding rail — a nod to "bathycast" */
+  .depths{ position:fixed; left:0; top:0; bottom:0; width:64px; z-index:1;
+    display:none; pointer-events:none; }
+  @media (min-width:1180px){ .depths{ display:block; } }
+  .depths ol{ list-style:none; margin:0; padding:0; height:100%;
+    display:flex; flex-direction:column; justify-content:space-between;
+    font-family:var(--mono); font-size:.62rem; letter-spacing:.05em;
+    color:var(--muted); opacity:.5; padding:1.4rem 0; }
+  .depths li{ position:relative; padding-left:14px; }
+  .depths li::before{ content:""; position:absolute; left:0; top:.5em;
+    width:8px; height:1px; background:var(--brass-dim); }
+
+  /* ---- hero ---- */
+  header{ position:relative; z-index:2; }
+  .hero{ display:grid; grid-template-columns:1fr; gap:clamp(2rem,5vw,3.5rem);
+    align-items:center; padding:clamp(3rem,9vw,6rem) 0 clamp(2rem,5vw,3.5rem); }
+  @media (min-width:860px){ .hero{ grid-template-columns:1.05fr .95fr; } }
+
+  .eyebrow{ font-family:var(--mono); font-size:.72rem; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--brass); margin:0 0 1.4rem;
+    display:flex; align-items:center; gap:.7rem; }
+  .eyebrow::before{ content:""; width:34px; height:1px; background:var(--brass); opacity:.7; }
+
+  h1{ font-family:var(--serif); font-weight:500; letter-spacing:.005em;
+    font-size:clamp(3rem,8vw,5.4rem); line-height:.98; margin:0 0 1.3rem;
+    text-wrap:balance; }
+  h1 em{ font-style:italic; color:var(--cream); }
+  .lede{ font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.7rem);
+    font-style:italic; color:var(--sand); max-width:34ch; margin:0 0 2rem;
+    line-height:1.35; text-wrap:balance; }
+
+  .cta{ display:flex; flex-wrap:wrap; gap:.7rem; }
+  .cta a{ text-decoration:none; font-weight:600; font-size:.9rem;
+    letter-spacing:.02em; padding:.62rem 1.15rem; border-radius:999px;
+    border:1px solid var(--hairline); color:var(--foam);
+    background:rgba(255,255,255,.02); transition:border-color .18s, background .18s, transform .18s; }
+  .cta a:hover{ border-color:var(--brass); background:rgba(211,166,92,.08); transform:translateY(-1px); }
+  .cta a.primary{ background:var(--brass); color:#241905; border-color:var(--brass); }
+  .cta a.primary:hover{ background:#e4b869; }
+  .cta a:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; }
+
+  /* framed porthole photo */
+  .portrait{ position:relative; }
+  .portrait .frame{ position:relative; border-radius:20px; overflow:hidden;
+    border:1px solid var(--hairline);
+    box-shadow:0 2px 4px rgba(0,0,0,.4), 0 30px 70px rgba(0,0,0,.55);
+    animation:rise 1s cubic-bezier(.2,.7,.2,1) both; }
+  .portrait img{ display:block; width:100%; height:auto; aspect-ratio:1/1;
+    object-fit:cover; }
+  .portrait .frame::after{ content:""; position:absolute; inset:0;
+    box-shadow:inset 0 0 0 1px rgba(244,231,204,.10);
+    background:linear-gradient(180deg, transparent 55%, rgba(5,15,27,.35)); }
+  .stamp{ position:absolute; right:-10px; bottom:-14px; z-index:3;
+    font-family:var(--mono); font-size:.62rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--brass);
+    background:var(--deep); border:1px solid var(--hairline);
+    padding:.5rem .8rem; border-radius:10px; }
+
+  /* ---- log section ---- */
+  main{ position:relative; z-index:2; }
+  .rule{ height:1px; background:linear-gradient(90deg, transparent, var(--hairline), transparent);
+    margin:clamp(2rem,5vw,3.5rem) 0; }
+
+  .log{ display:grid; grid-template-columns:1fr; gap:clamp(1.5rem,4vw,3rem);
+    padding-bottom:1rem; }
+  @media (min-width:860px){ .log{ grid-template-columns:200px 1fr; } }
+  .log .tag{ font-family:var(--mono); font-size:.7rem; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--muted); }
+  .log .tag .coord{ display:block; color:var(--brass); margin-top:.5rem; font-size:.66rem; }
+  .prose{ max-width:60ch; }
+  .prose h2{ font-family:var(--serif); font-weight:500; font-size:clamp(1.8rem,4vw,2.6rem);
+    line-height:1.1; margin:0 0 1.1rem; color:var(--cream); text-wrap:balance; }
+  .prose p{ margin:0 0 1.15rem; color:#D5E0EA; }
+  .prose p .first{ font-family:var(--serif); font-style:italic; font-size:1.15em;
+    color:var(--sand); }
+  .prose .sign{ font-family:var(--serif); font-style:italic; color:var(--sand);
+    font-size:1.15rem; margin-top:1.6rem; }
+
+  .dispatch{ display:grid; grid-template-columns:1fr; gap:1rem; }
+  @media (min-width:620px){ .dispatch{ grid-template-columns:repeat(3,1fr); } }
+  .dispatch a{ text-decoration:none; display:block; padding:1.2rem 1.3rem;
+    border:1px solid var(--hairline); border-radius:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,.025), transparent);
+    transition:border-color .18s, transform .18s, background .18s; }
+  .dispatch a:hover{ border-color:var(--brass); transform:translateY(-2px);
+    background:linear-gradient(180deg, rgba(211,166,92,.08), transparent); }
+  .dispatch a:focus-visible{ outline:2px solid var(--brass); outline-offset:3px; }
+  .dispatch .plat{ font-family:var(--mono); font-size:.66rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--brass); }
+  .dispatch .handle{ font-family:var(--serif); font-size:1.35rem; color:var(--foam);
+    margin-top:.3rem; }
+  .dispatch .go{ color:var(--muted); font-size:.82rem; margin-top:.35rem; }
+
+  footer{ position:relative; z-index:2; color:var(--muted);
+    padding:clamp(2.5rem,6vw,4rem) 0 clamp(2rem,5vw,3rem); }
+  .foot-in{ display:flex; flex-wrap:wrap; gap:1rem 1.6rem; align-items:center;
+    justify-content:space-between; border-top:1px solid var(--hairline);
+    padding-top:1.6rem; font-size:.86rem; }
+  .foot-in a{ color:var(--sand); text-decoration:none; }
+  .foot-in a:hover{ color:var(--brass); }
+  .foot-links{ display:flex; gap:1.3rem; flex-wrap:wrap; }
+  .crest{ font-family:var(--serif); font-style:italic; color:var(--sand); }
+
+  @keyframes rise{ from{ opacity:0; transform:translateY(18px) scale(.99); }
+    to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion:reduce){ .portrait .frame{ animation:none; } }
+</style>
+</head>
+<body>
+  <nav class="depths" aria-hidden="true">
+    <ol>
+      <li>0 m</li><li>40 m</li><li>120 m</li><li>300 m</li>
+      <li>700 m</li><li>1500 m</li><li>3000 m</li>
+    </ol>
+  </nav>
+
+  <header>
+    <div class="wrap hero">
+      <div class="intro">
+        <p class="eyebrow">Ship&rsquo;s registry &middot; Ragdoll_Keks</p>
+        <h1>Sir Keks, of a long line of <em>seafarers</em>.</h1>
+        <p class="lede">His forebears sounded the deep and charted the swell.
+          He has chosen, with great dignity, to chart the sofa.</p>
+        <div class="cta">
+          <a class="primary" href="https://www.instagram.com/Ragdoll_Keks" rel="me noopener" target="_blank">Follow the voyage</a>
+          <a href="#log">Read the log</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="frame">
+          <img src="keks-hero.jpg" width="1080" height="1080"
+               alt="Sir Keks, a cream ragdoll cat, reclining belly-up on a deep navy blanket like calm open water.">
+        </div>
+        <span class="stamp">Adrift &middot; belly to the sky</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="rule"></div>
+
+      <section class="log" id="log">
+        <div class="tag">
+          Log entry &mdash; no. I
+          <span class="coord">27&deg;28&prime;S &middot; 153&deg;02&prime;E<br>Brisbane roadstead</span>
+        </div>
+        <div class="prose">
+          <h2>An account of his lineage</h2>
+          <p><span class="first">They say the first of his name</span> shipped out
+            long before the fashion for sitting in cardboard boxes. The Keks line
+            were mariners &mdash; watch-standers and depth-takers &mdash; the sort
+            who read a horizon the way a lesser cat reads a food bowl. Where the
+            chart said <em>here be nothing</em>, a Keks let down the sounding line
+            and wrote in a number.</p>
+          <p>Sir Keks inherited the whole of it: the sea-legs, the unbothered
+            gaze, the certainty that the world will arrange itself agreeably if one
+            simply waits, well-groomed, in a patch of sun. The navy blanket beneath
+            him is, he will tell you, merely the nearest available ocean.</p>
+          <p>He keeps his watch from a warm berth now, and files his dispatches
+            daily &mdash; brief, vertical, and conducted with the composure of a
+            captain who has seen weather and found it beneath comment.</p>
+          <p class="sign">&mdash; entered into the record on his behalf, as he was asleep.</p>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <section class="log" aria-labelledby="dispatch-h">
+        <div class="tag">
+          Dispatches
+          <span class="coord">posted daily &middot; @Ragdoll_Keks</span>
+        </div>
+        <div class="prose" style="max-width:none">
+          <h2 id="dispatch-h">Where to receive them</h2>
+          <div class="dispatch">
+            <a href="https://www.instagram.com/Ragdoll_Keks" rel="me noopener" target="_blank">
+              <div class="plat">Instagram</div>
+              <div class="handle">@Ragdoll_Keks</div>
+              <div class="go">Photographs from the berth &rarr;</div>
+            </a>
+            <a href="https://www.tiktok.com/@Ragdoll_Keks" rel="me noopener" target="_blank">
+              <div class="plat">TikTok</div>
+              <div class="handle">@Ragdoll_Keks</div>
+              <div class="go">Short passages under sail &rarr;</div>
+            </a>
+            <a href="https://www.youtube.com/@RagdollKeks" rel="me noopener" target="_blank">
+              <div class="plat">YouTube</div>
+              <div class="handle">@RagdollKeks</div>
+              <div class="go">The longer watch &rarr;</div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot-in">
+      <span class="crest">Ragdoll_Keks &middot; a small cat with a large wake.</span>
+      <span class="foot-links">
+        <a href="mailto:ragdollkeks@gmail.com">ragdollkeks@gmail.com</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>
